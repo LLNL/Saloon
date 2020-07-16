@@ -1,0 +1,14 @@
+*saloon.txt* Plugin to manage Python linters and fixers from a sidebar.
+
+===============================================================================
+CONTENTS                                                      *saloon-contents*
+
+    1. Introduction.........................|saloon-introduction|
+
+===============================================================================
+1. Introduction                                           *saloon-introduction*
+
+Saloon is a wrapper around ALE and Prospector.
+
+===============================================================================
+  vim:tw=78:ts=8:ft=help:norl:

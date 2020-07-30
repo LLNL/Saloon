@@ -102,43 +102,43 @@ endfunction
 "}}}
 " Public API {{{1
 " Toggle flags {{{2
-"Function: saloon#prospector#ToggleDocWarnings() function {{{3
-function! saloon#prospector#ToggleDocWarnings() abort
+"Function: saloon#prospector#ToggleFlagDocWarnings() function {{{3
+function! saloon#prospector#ToggleFlagDocWarnings() abort
     let g:prospector_flag_enabled_doc_warnings =
                 \ (g:prospector_flag_enabled_doc_warnings + 1) % 2
     call s:updateProspectorCommand()
 endfunction
 
-"Function: saloon#prospector#ToggleFullPep8() function {{{3
-function! saloon#prospector#ToggleFullPep8() abort
+"Function: saloon#prospector#ToggleFlagFullPep8() function {{{3
+function! saloon#prospector#ToggleFlagFullPep8() abort
     let g:prospector_flag_enabled_full_pep8 =
                 \ (g:prospector_flag_enabled_full_pep8 + 1) % 2
     call s:updateProspectorCommand()
 endfunction
 
-"Function: saloon#prospector#ToggleNoAutodetect() function {{{3
-function! saloon#prospector#ToggleNoAutodetect() abort
+"Function: saloon#prospector#ToggleFlagNoAutodetect() function {{{3
+function! saloon#prospector#ToggleFlagNoAutodetect() abort
     let g:prospector_flag_enabled_no_autodetect =
                 \ (g:prospector_flag_enabled_no_autodetect + 1) % 2
     call s:updateProspectorCommand()
 endfunction
 
-"Function: saloon#prospector#ToggleNoBlending() function {{{3
-function! saloon#prospector#ToggleNoBlending() abort
+"Function: saloon#prospector#ToggleFlagNoBlending() function {{{3
+function! saloon#prospector#ToggleFlagNoBlending() abort
     let g:prospector_flag_enabled_no_blending =
                 \ (g:prospector_flag_enabled_no_blending + 1) % 2
     call s:updateProspectorCommand()
 endfunction
 
-"Function: saloon#prospector#ToggleNoStyleWarnings() function {{{3
-function! saloon#prospector#ToggleNoStyleWarnings() abort
+"Function: saloon#prospector#ToggleFlagNoStyleWarnings() function {{{3
+function! saloon#prospector#ToggleFlagNoStyleWarnings() abort
     let g:prospector_flag_enabled_no_style_warnings =
                 \ (g:prospector_flag_enabled_no_style_warnings + 1) % 2
     call s:updateProspectorCommand()
 endfunction
 
-"Function: saloon#prospector#ToggleTestWarnings() function {{{3
-function! saloon#prospector#ToggleTestWarnings() abort
+"Function: saloon#prospector#ToggleFlagTestWarnings() function {{{3
+function! saloon#prospector#ToggleFlagTestWarnings() abort
     let g:prospector_flag_enabled_test_warnings =
                 \ (g:prospector_flag_enabled_test_warnings + 1) % 2
     call s:updateProspectorCommand()

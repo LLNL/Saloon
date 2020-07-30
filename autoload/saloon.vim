@@ -4,8 +4,11 @@ if exists('g:saloon_loaded_autoload')
     finish
 endif
 let g:saloon_loaded_autoload = 1
- 
+
 scriptencoding utf-8
+
+let g:SaloonWinPos = 'right'
+let g:SaloonWinWidth = 31
 
 " Public API {{{1
 "Function: saloon#ProspectorOnly() function {{{2
@@ -15,8 +18,22 @@ function! saloon#ProspectorOnly() abort
 
     " TODO: leave enabled linters enabled not covered by prospector
     let g:ale_linters = {'python': ['prospector']}
-    
+
     call saloon#prospector#Init()
 endfunction
 
+"Function: saloon#CreateWin() function {{{2
+function! saloon#CreateWin() abort
+    let l:splitLocation = g:SaloonWinPos ==# 'right' ? 'botright ' : 'topleft '
+    let l:splitSize = g:SaloonWinWidth
+
+    if 1
+        silent! execute l:splitLocation . 'vertical ' . l:splitSize . ' split'
+        silent! execute 'buffer ' . 'STUB'
+    endif
+
+    setlocal winfixwidth
+endfunction
+
+" ~/.vim/plugged/nerdtree/lib/nerdtree/ui.vim
 " vim: set sw=4 sts=4 et fdm=marker:

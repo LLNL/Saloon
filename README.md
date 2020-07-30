@@ -7,7 +7,7 @@ Since [prospector](http://prospector.landscape.io/en/master/) already handles mu
 
 ## Installation
 - Clone this repo into ~/.vim/pack/**<PLACE_HOLDER>**/start
-- To discover help docs (in Vim) run: `:helptags ~/.vim/pack/<PLACE_HOLDER>/start/saloon/doc/`
+- In Vim run: `:helptags ~/.vim/pack/<PLACE_HOLDER>/start/saloon/doc/` to make `:help saloon` work
 - NOTE: Substitute **<PLACE_HOLDER>** with your directory name
 
 ## Dependencies

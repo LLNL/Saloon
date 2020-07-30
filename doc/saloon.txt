@@ -4,11 +4,103 @@
 CONTENTS                                                      *saloon-contents*
 
     1. Introduction.........................|saloon-introduction|
+    2. Commands.................................|saloon-commands|
+    3. Customisation.......................|saloon-customisation|
 
 ===============================================================================
 1. Introduction                                           *saloon-introduction*
 
 Saloon is a wrapper around ALE and Prospector.
+
+
+===============================================================================
+2. Commands                                                   *saloon-commands*
+
+-------------------------------------------------------------------------------
+2.1. Prospector Commands                             *SaloonProspectorCommands*
+-------------------------------------------------------------------------------
+
+ProspectorOnly                                                 *ProspectorOnly*
+
+  Override ALE's linter settings and enable only prospector for python files.
+
+ToggleFlagDocWarnings                                   *ToggleFlagDocWarnings*
+
+  Enable/disable warnings about documentation.
+
+ToggleFlagNoAutodetect                                 *ToggleFlagNoAutodetect*
+
+  TODO:
+  Not sure how practical this is. Need to test with Django and similar
+  frameworks and libraries.
+
+ToggleFlagNoBlending                                     *ToggleFlagNoBlending*
+
+  Turn off blending of messages. Prospector will merge together messages
+  from different tools if they represent the same error. Use this option to
+  see all unmerged messages.
+
+ToggleFlagNoStyleWarnings                           *ToggleFlagNoStyleWarnings*
+
+  Enable/disable excluding warnings about style.
+  This disables the PEP8 tool and similar checks for formatting.
+
+ToggleFlagTestWarnings                                 *ToggleFlagTestWarnings*
+
+  Enable/disable checking test modules and packages.
+
+MoreStrict                                                         *MoreStrict*
+
+  Increase strictness of checker. Based on prospector's default profiles.
+  Strictness levels are: [veryhigh, high, medium, low, verylow] or (off).
+
+LessStrict                                                         *LessStrict*
+
+  Decrease strictness of checker. Based on prospector's default profiles.
+  Strictness levels are: [veryhigh, high, medium, low, verylow] or (off).
+
+ToggleToolBandit                                             *ToggleToolBandit*
+
+ToggleToolDodgy                                               *ToggleToolDodgy*
+
+ToggleToolFrosted                                           *ToggleToolFrosted*
+
+ToggleToolMccabe                                             *ToggleToolMccabe*
+
+ToggleToolMyPy                                                 *ToggleToolMyPy*
+
+ToggleToolPep257                                             *ToggleToolPep257*
+
+ToggleToolPep8                                                 *ToggleToolPep8*
+
+ToggleToolProfileValidator                         *ToggleToolProfileValidator*
+
+ToggleToolPyflakes                                         *ToggleToolPyflakes*
+
+ToggleToolPylint                                             *ToggleToolPylint*
+
+ToggleToolPyroma                                             *ToggleToolPyroma*
+
+ToggleToolVulture                                           *ToggleToolVulture*
+
+
+===============================================================================
+3. Customisation                                         *saloon-customisation*
+
+
+-------------------------------------------------------------------------------
+3.1. Settings summary                                  *SaloonSettingsSummary*
+-------------------------------------------------------------------------------
+                                                                *SaloonWinPos*
+Values: "left" or "right"
+Default: "right".
+
+This setting is used to determine where the Saloon window is placed on the
+screen.
+
+This setting makes it possible to use two different explorer plugins
+simultaneously. For example, you could have the NERDTree plugin on the left
+of the window and the Saloon on the right.
 
 ===============================================================================
   vim:tw=78:ts=8:ft=help:norl:

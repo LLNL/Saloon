@@ -6,5 +6,11 @@ Saloon's menu lets developers toggle which static analysis tools to use and dele
 Since [prospector](http://prospector.landscape.io/en/master/) already handles multiple tools, and knows what to do with ALE, most of the actual linting will be done through prospector calls.
 
 ## Installation
-TBD
+- Clone this repo into ~/.vim/pack/**<PLACE_HOLDER>**/start
+- To discover help docs (in Vim) run: `:helptags ~/.vim/pack/<PLACE_HOLDER>/start/saloon/doc/`
+- NOTE: Substitute **<PLACE_HOLDER>** with your directory name
 
+## Dependencies
+- [Vim 8](https://lc.llnl.gov/gitlab/python-vim/vim-8) compiled with **Python 3** support
+- [ALE](https://github.com/dense-analysis/ale)
+- [Prospector](http://prospector.landscape.io/en/master/)

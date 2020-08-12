@@ -80,20 +80,23 @@ function! s:UI.render()
     let &scrolloff = old_scrolloff
 
     let text = "\" ======================\n\n"
-    let text .= "Strictness Level:\n"
-    let text .= "[0, 1, 2, 3, 4, 5]\n\n"
-    let text .= "Linters being used:\n"
-    let text .= "[ ] Bandit\n"
-    let text .= "[ ] Dodgy\n"
-    let text .= "[ ] Frosted\n"
-    let text .= "[ ] Mccabe\n"
-    let text .= "[ ] MyPy\n"
-    let text .= "[ ] Pep257\n"
-    let text .= "[ ] Pep8\n"
-    let text .= "[ ] Pyflakes\n"
-    let text .= "[ ] Pylint\n"
-    let text .= "[ ] Pyroma\n"
-    let text .= "[ ] Vulture\n"
+    let text .= "Prospector settings:\n"
+
+    let l:levels = saloon#prospector#getStrictnessLevels()
+    let text .= "  Strictness Level:\n"
+    let text .= "    " .. string(range(len(l:levels) + 1)) .. "\n\n"
+
+    let text .= "  Linters:\n"
+    let l:tools = saloon#prospector#getToolsAvailable()
+    for tool in l:tools
+        if index(g:prospector_option_value_tool, tool) < 0
+            let l:is_enabled = "[ ]"
+        else
+            let l:is_enabled = "[X]"
+        endif
+        let text .= "    " .. l:is_enabled .. " "
+        let text .= toupper(tool[0]) .. tool[1:] .. "\n"
+    endfor
 
     silent! put =text
     setlocal readonly nomodifiable

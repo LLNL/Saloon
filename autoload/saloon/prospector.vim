@@ -61,11 +61,11 @@ let g:prospector_options = {
      \ g:prospector_option_name_tool:         function("s:GetOption", ["tool"]),
      \ g:prospector_option_name_without_tool: function("s:GetOption", ["without_tool"]),}
 
-function! s:getStrictnessLevels()
+function! saloon#prospector#getStrictnessLevels()
     return ['verylow', 'low', 'medium', 'high', 'veryhigh']
 endfunction
 
-function! s:getToolsAvailable() abort
+function! saloon#prospector#getToolsAvailable() abort
     return ['bandit', 'dodgy', 'frosted', 'mccabe', 'mypy', 'pep257', 'pep8',
           \ 'profile-validator', 'pyflakes', 'pylint', 'pyroma', 'vulture']
 endfunction
@@ -77,7 +77,7 @@ function! saloon#prospector#Init() abort
         echom "Saloon started before ALE"
     endif
     let g:ale_python_prospector_options = get(g:, 'ale_python_prospector_options', "")
-    let g:prospector_option_value_strictness = s:getStrictnessLevels()[-1]
+    let g:prospector_option_value_strictness = saloon#prospector#getStrictnessLevels()[-1]
     call s:updateProspectorCommand()
 endfunction
 
@@ -147,7 +147,7 @@ endfunction
 " Toggle parts of options {{{2
 "Function: saloon#prospector#DecreaseStrictness() function {{{3
 function! saloon#prospector#DecreaseStrictness() abort
-    let l:strictness_levels = s:getStrictnessLevels()
+    let l:strictness_levels = saloon#prospector#getStrictnessLevels()
     let l:new_level = index(l:strictness_levels,
                           \ g:prospector_option_value_strictness) - 1
 "    if l:new_level >= 0
@@ -161,7 +161,7 @@ endfunction
 
 "Function: saloon#prospector#IncreaseStrictness() function {{{3
 function! saloon#prospector#IncreaseStrictness() abort
-    let l:strictness_levels = s:getStrictnessLevels()
+    let l:strictness_levels = saloon#prospector#getStrictnessLevels()
     let l:new_level = index(l:strictness_levels,
                           \ g:prospector_option_value_strictness) + 1
     if l:new_level < len(l:strictness_levels)
@@ -172,7 +172,7 @@ endfunction
 
 "Function: s:ToggleTool() function {{{3
 function! s:ToggleTool(tool) abort
-    if index(s:getToolsAvailable(), a:tool) < 0
+    if index(saloon#prospector#getToolsAvailable(), a:tool) < 0
         return
     endif
 

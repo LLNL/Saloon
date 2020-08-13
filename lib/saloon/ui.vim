@@ -90,9 +90,9 @@ function! s:UI.render()
     let l:tools = saloon#prospector#getToolsAvailable()
     for tool in l:tools
         if index(g:prospector_option_value_tool, tool) < 0
-            let l:is_enabled = "[ ]"
+            let l:is_enabled = "(off)"
         else
-            let l:is_enabled = "[X]"
+            let l:is_enabled = "(on)"
         endif
         let text .= "    " .. l:is_enabled .. " "
         let text .= toupper(tool[0]) .. tool[1:] .. "\n"

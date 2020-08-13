@@ -92,7 +92,7 @@ function! s:UI.render()
         if index(g:prospector_option_value_tool, tool) < 0
             let l:is_enabled = "(off)"
         else
-            let l:is_enabled = "(on)"
+            let l:is_enabled = "(on) "
         endif
         let text .= "    " .. l:is_enabled .. " "
         let text .= toupper(tool[0]) .. tool[1:] .. "\n"

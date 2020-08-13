@@ -183,6 +183,9 @@ function! s:ToggleTool(tool) abort
         call remove(g:prospector_option_value_tool, l:index)
     endif
     call s:updateProspectorCommand()
+    if g:Saloon.IsOpen()
+        call g:Saloon.refreshSaloon()
+    endif
 endfunction
 
 "Function: saloon#prospector#ToggleToolBandit() function {{{3

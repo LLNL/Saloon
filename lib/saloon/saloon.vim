@@ -110,4 +110,19 @@ function! s:Saloon.render()
     call self.ui.render()
 endfunction
 
+"Function: s:Saloon.refreshSaloon() function {{{1
+function! s:Saloon.refreshSaloon() abort
+    if winnr() ==# g:Saloon.GetWinNum()
+        call b:Saloon.render()
+        return
+    endif
+
+    let l:useWinId = exists('*win_getid') && exists('*win_gotoid')
+    let l:activeBufOrWin = l:useWinId ? win_getid() : bufnr('')
+
+    call saloon#exec(g:Saloon.GetWinNum() . ' wincmd w', 1)
+    call b:Saloon.render()
+    call saloon#exec('wincmd p', 1)
+endfunction
+
 " vim: set sw=4 sts=4 et fdm=marker:

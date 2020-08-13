@@ -46,6 +46,12 @@ function! s:Saloon.CursorToSaloonWin(...)
     call saloon#exec(g:Saloon.GetWinNum() . 'wincmd w', a:0 >0 ? a:1 : 1)
 endfunction
 
+" Function: s:Saloon.ExistsForBuffer()   {{{1
+" Returns 1 if a saloon exists in the current buffer
+function! s:Saloon.ExistsForBuf()
+    return exists('b:Saloon')
+endfunction
+
 " Function: s:Saloon.ExistsForTab()   {{{1
 " Returns 1 if a Saloon root exists in the current tab
 function! s:Saloon.ExistsForTab()
@@ -102,6 +108,16 @@ function! s:Saloon.New(type)
     let newObj.ui = g:SaloonUI.New(newObj)
     let newObj._type = a:type
     return newObj
+endfunction
+
+"FUNCTION: s:Saloon.previousBuf() {{{1
+function! s:Saloon.previousBuf()
+    return self._previousBuf
+endfunction
+
+"FUNCTION: s:Saloon.setPreviousBuf() {{{1
+function! s:Saloon.setPreviousBuf(bnum)
+    let self._previousBuf = a:bnum
 endfunction
 
 "FUNCTION: s:Saloon.render() {{{1

@@ -12,6 +12,11 @@
 let s:Creator = {}
 let g:SaloonCreator = s:Creator
 
+" FUNCTION: s:Creator._bindMappings() {{{1
+function! s:Creator._bindMappings()
+    call g:SaloonKeyMap.BindAll()
+endfunction
+
 " FUNCTION: s:Creator.BufNamePrefix() {{{1
 function! s:Creator.BufNamePrefix()
     return 'Saloon_'
@@ -131,8 +136,11 @@ function! s:Creator._setCommonBufOptions()
     setlocal nowrap
     setlocal nonumber
     setlocal norelativenumber
+    setlocal cursorline
 
     iabc <buffer>
+
+    call self._bindMappings()
 
     setlocal filetype=saloon
 endfunction

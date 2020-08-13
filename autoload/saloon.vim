@@ -33,6 +33,7 @@ function! saloon#loadClassFiles() abort
     runtime lib/saloon/saloon.vim
     runtime lib/saloon/creator.vim
     runtime lib/saloon/ui.vim
+    runtime lib/saloon/key_map.vim
 endfunction
 
 " FUNCTION: saloon#setupCommands() {{{1

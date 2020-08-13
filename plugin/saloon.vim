@@ -20,6 +20,8 @@ nnoremap <silent> <Plug>(saloon_prospector_less_strict) LessStrict:<Return>
 
 
 
+" TODO: put this somewhere more appropriate
+let g:SaloonMapQuit = 'q'
 
 " SECTION: Auto commands {{{1
 "============================================================
@@ -28,4 +30,11 @@ augroup Saloon
     exec 'autocmd BufEnter,WinEnter '. g:SaloonCreator.BufNamePrefix() .'* stopinsert'
 augroup END
 
+" SECTION: Public API {{{1
+"============================================================
+function! SaloonAddKeyMap(options)
+    call g:SaloonKeyMap.Create(a:options)
+endfunction
+
+call saloon#ui_interface#createDefaultBindings()
 " vim: set sw=4 sts=4 et fdm=marker:

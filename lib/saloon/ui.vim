@@ -71,14 +71,6 @@ function! s:UI.render()
     " delete the blank line at the top of the buffer
     silent 1,1delete _
 
-    " restore the view
-    let old_scrolloff=&scrolloff
-    let &scrolloff=0
-    call cursor(topLine, 1)
-    normal! zt
-    call cursor(curLine, curCol)
-    let &scrolloff = old_scrolloff
-
     let text = "\" ======================\n\n"
     let text .= "Prospector settings:\n"
 
@@ -99,6 +91,15 @@ function! s:UI.render()
     endfor
 
     silent! put =text
+
+    " restore the view
+    let old_scrolloff=&scrolloff
+    let &scrolloff=0
+    call cursor(topLine, 1)
+    normal! zt
+    call cursor(curLine, curCol)
+    let &scrolloff = old_scrolloff
+
     setlocal readonly nomodifiable
 endfunction
 

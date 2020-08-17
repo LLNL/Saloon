@@ -170,10 +170,10 @@ function! saloon#prospector#IncreaseStrictness() abort
     call s:updateProspectorCommand()
 endfunction
 
-"Function: s:ToggleTool() function {{{3
-function! s:ToggleTool(tool) abort
+"Function: saloon#prospector#ToggleTool() function {{{3
+function! saloon#prospector#ToggleTool(tool) abort
     if index(saloon#prospector#getToolsAvailable(), a:tool) < 0
-        return
+        return -1
     endif
 
     let l:index = index(g:prospector_option_value_tool, a:tool)
@@ -190,62 +190,62 @@ endfunction
 
 "Function: saloon#prospector#ToggleToolBandit() function {{{3
 function! saloon#prospector#ToggleToolBandit() abort
-    call s:ToggleTool("bandit")
+    call saloon#prospector#ToggleTool("bandit")
 endfunction
 
 "Function: saloon#prospector#ToggleToolDodgy() function {{{3
 function! saloon#prospector#ToggleToolDodgy() abort
-    call s:ToggleTool("dodgy")
+    call saloon#prospector#ToggleTool("dodgy")
 endfunction
 
 "Function: saloon#prospector#ToggleToolFrosted() function {{{3
 function! saloon#prospector#ToggleToolFrosted() abort
-    call s:ToggleTool("frosted")
+    call saloon#prospector#ToggleTool("frosted")
 endfunction
 
 "Function: saloon#prospector#ToggleToolMccabe() function {{{3
 function! saloon#prospector#ToggleToolMccabe() abort
-    call s:ToggleTool("mccabe")
+    call saloon#prospector#ToggleTool("mccabe")
 endfunction
 
 "Function: saloon#prospector#ToggleToolMyPy() function {{{3
 function! saloon#prospector#ToggleToolMyPy() abort
-    call s:ToggleTool("mypy")
+    call saloon#prospector#ToggleTool("mypy")
 endfunction
 
 "Function: saloon#prospector#ToggleToolPep257() function {{{3
 function! saloon#prospector#ToggleToolPep257() abort
-    call s:ToggleTool("pep257")
+    call saloon#prospector#ToggleTool("pep257")
 endfunction
 
 "Function: saloon#prospector#ToggleToolPep8() function {{{3
 function! saloon#prospector#ToggleToolPep8() abort
-    call s:ToggleTool("pep8")
+    call saloon#prospector#ToggleTool("pep8")
 endfunction
 
 "Function: saloon#prospector#ToggleToolProfileValidator() function {{{3
 function! saloon#prospector#ToggleToolProfileValidator() abort
-    call s:ToggleTool("profile-validator")
+    call saloon#prospector#ToggleTool("profile-validator")
 endfunction
 
 "Function: saloon#prospector#ToggleToolPyflakes() function {{{3
 function! saloon#prospector#ToggleToolPyflakes() abort
-    call s:ToggleTool("pyflakes")
+    call saloon#prospector#ToggleTool("pyflakes")
 endfunction
 
 "Function: saloon#prospector#ToggleToolPylint() function {{{3
 function! saloon#prospector#ToggleToolPylint() abort
-    call s:ToggleTool("pylint")
+    call saloon#prospector#ToggleTool("pylint")
 endfunction
 
 "Function: saloon#prospector#ToggleToolPyroma() function {{{3
 function! saloon#prospector#ToggleToolPyroma() abort
-    call s:ToggleTool("pyroma")
+    call saloon#prospector#ToggleTool("pyroma")
 endfunction
 
 "Function: saloon#prospector#ToggleToolVulture() function {{{3
 function! saloon#prospector#ToggleToolVulture() abort
-    call s:ToggleTool("vulture")
+    call saloon#prospector#ToggleTool("vulture")
 endfunction
 
 " vim: set sw=4 sts=4 et fdm=marker:

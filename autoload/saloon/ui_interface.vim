@@ -8,6 +8,7 @@ function! saloon#ui_interface#createDefaultBindings() abort
     let s = '<SNR>' . s:SID() . '_'
 
     call SaloonAddKeyMap({ 'key': g:SaloonMapQuit, 'scope': 'all', 'callback': s.'closeSaloonWindow' })
+    call SaloonAddKeyMap({ 'key': '<CR>', 'scope': 'all', 'callback': s.'prospectorToggleTool' })
 endfunction
 
 
@@ -24,6 +25,14 @@ function! s:closeSaloonWindow() abort
             call g:Saloon.Close()
         endif
     endif
+endfunction
+
+" FUNCTION: s:prospectorToggleTool() {{{1
+" toggle prospector tool under cursor line
+function! s:prospectorToggleTool() abort
+    execute 'normal! Y'
+    let l:cur_line = split(trim(@"))
+    call saloon#prospector#ToggleTool(tolower(l:cur_line[-1]))
 endfunction
 
 " FUNCTION: saloon#ui_interface#invokeKeyMap(key) {{{1

@@ -50,6 +50,23 @@ function! s:UI.saveScreenState()
     endtry
 endfunction
 
+" FUNCTION: s:UI.updateStrictnessSynHl() {{{1
+function! s:UI.updateStrictnessSynHl(index)
+    if a:index < 0
+        syn match ProspectorStrictnessRange "\[[,0-9 ]\+\]"ms=s+1,me=e-1,hs=s+1,he=s+2
+    elseif a:index == 0
+        syn match ProspectorStrictnessRange "\[[,0-9 ]\+\]"ms=s+1,me=e-1,hs=s+4,he=s+5
+    elseif a:index == 1
+        syn match ProspectorStrictnessRange "\[[,0-9 ]\+\]"ms=s+1,me=e-1,hs=s+7,he=s+8
+    elseif a:index == 2
+        syn match ProspectorStrictnessRange "\[[,0-9 ]\+\]"ms=s+1,me=e-1,hs=s+10,he=s+11
+    elseif a:index == 3
+        syn match ProspectorStrictnessRange "\[[,0-9 ]\+\]"ms=s+1,me=e-1,hs=s+13,he=s+14
+    else
+        syn match ProspectorStrictnessRange "\[[,0-9 ]\+\]"ms=s+1,me=e-1,hs=e-2,he=e-1
+    endif
+endfunction
+
 " FUNCTION: s:UI.render() {{{1
 function! s:UI.render()
     setlocal noreadonly modifiable
@@ -76,7 +93,13 @@ function! s:UI.render()
 
     let l:levels = saloon#prospector#getStrictnessLevels()
     let text .= "  Strictness Level:\n"
-    let text .= "    " .. string(range(len(l:levels) + 1)) .. "\n\n"
+    let text .= "    " .. string(range(len(l:levels) + 1)) .. "\n"
+
+    call s:UI.updateStrictnessSynHl(index(l:levels,
+                                  \ g:prospector_option_value_strictness))
+
+    let text .= "    (i)ncrease\n"
+    let text .= "    (d)ecrease\n\n"
 
     let text .= "  Linters:\n"
     let l:tools = saloon#prospector#getToolsAvailable()
@@ -90,6 +113,20 @@ function! s:UI.render()
         let text .= toupper(tool[0]) .. tool[1:] .. "\n"
     endfor
 
+    let text .= "\n  Flags:\n"
+    let l:flags = saloon#prospector#getFlagNames()
+    for flag in l:flags
+        if !has_key(g:prospector_flags, flag)
+            continue
+        endif
+        if g:prospector_flags[flag]()
+            let l:is_enabled = "(on) "
+        else
+            let l:is_enabled = "(off)"
+        endif
+        let text .= "    " .. l:is_enabled .. " "
+        let text .= toupper(flag[2]) .. flag[3:] .. "\n"
+    endfor
     silent! put =text
 
     " restore the view

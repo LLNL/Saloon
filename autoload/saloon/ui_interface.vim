@@ -9,6 +9,8 @@ function! saloon#ui_interface#createDefaultBindings() abort
 
     call SaloonAddKeyMap({ 'key': g:SaloonMapQuit, 'scope': 'all', 'callback': s.'closeSaloonWindow' })
     call SaloonAddKeyMap({ 'key': '<CR>', 'scope': 'all', 'callback': s.'prospectorToggleTool' })
+    call SaloonAddKeyMap({ 'key': 'i', 'scope': 'all', 'callback': s.'prospectorIncreaseStrictness' })
+    call SaloonAddKeyMap({ 'key': 'd', 'scope': 'all', 'callback': s.'prospectorDecreaseStrictness' })
 endfunction
 
 
@@ -30,9 +32,24 @@ endfunction
 " FUNCTION: s:prospectorToggleTool() {{{1
 " toggle prospector tool under cursor line
 function! s:prospectorToggleTool() abort
-    execute 'normal! Y'
+    let l:old_reg = @"
+    yank
     let l:cur_line = split(trim(@"))
     call saloon#prospector#ToggleTool(tolower(l:cur_line[-1]))
+    let @" = l:old_reg
+endfunction
+
+" FUNCTION: s:prospectorDecreaseStrictness() {{{1
+" decrease strictness level for prospector tool
+function! s:prospectorDecreaseStrictness() abort
+    call saloon#prospector#DecreaseStrictness()
+endfunction
+
+
+" FUNCTION: s:prospectorIncreaseStrictness() {{{1
+" increase strictness level for prospector tool
+function! s:prospectorIncreaseStrictness() abort
+    call saloon#prospector#IncreaseStrictness()
 endfunction
 
 " FUNCTION: saloon#ui_interface#invokeKeyMap(key) {{{1

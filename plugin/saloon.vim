@@ -21,7 +21,13 @@ nnoremap <silent> <Plug>(saloon_prospector_less_strict) LessStrict:<Return>
 
 
 " TODO: put this somewhere more appropriate
+let g:SaloonAutoLint = 1
 let g:SaloonMapQuit = 'q'
+" TODO: better way to start with prospector enabled
+let g:SaloonEnableProspector = 1
+if g:SaloonEnableProspector
+    call saloon#ProspectorOnly()
+endif
 
 " SECTION: Auto commands {{{1
 "============================================================

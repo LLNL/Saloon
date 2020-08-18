@@ -24,15 +24,27 @@ let g:prospector_flag_enabled_no_style_warnings = 0
 let g:prospector_flag_enabled_test_warnings = 0
 "function! s:GetFlag(flag_name)
 function! s:GetFlag(flag_name)
-    return get(g:, "prospector_flag_enabled_" . a:flag_name, -1)
+    return get(g:, "prospector_flag_enabled_" . a:flag_name, 0)
 endfunction
 let g:prospector_flags = {
-        \ g:prospector_flag_name_doc_warnings:      function("s:GetFlag", ["doc_warnings"]),
-        \ g:prospector_flag_name_full_pep8:         function("s:GetFlag", ["full_pep8"]),
-        \ g:prospector_flag_name_no_autodetect:     function("s:GetFlag", ["no_autodetect"]),
-        \ g:prospector_flag_name_no_blending:       function("s:GetFlag", ["no_blending"]),
-        \ g:prospector_flag_name_no_style_warnings: function("s:GetFlag", ["no_style_warnings"]),
-        \ g:prospector_flag_name_test_warnings:     function("s:GetFlag", ["test_warnings"]),}
+        \ g:prospector_flag_name_doc_warnings:
+            \ function("s:GetFlag",
+                     \ [g:prospector_flag_name_doc_warnings[2:]]),
+        \ g:prospector_flag_name_full_pep8:
+            \ function("s:GetFlag",
+                     \ [g:prospector_flag_name_full_pep8[2:]]),
+        \ g:prospector_flag_name_no_autodetect:
+            \ function("s:GetFlag",
+                     \ [g:prospector_flag_name_no_autodetect[2:]]),
+        \ g:prospector_flag_name_no_blending:
+            \ function("s:GetFlag",
+                     \ [g:prospector_flag_name_no_blending[2:]]),
+        \ g:prospector_flag_name_no_style_warnings:
+            \ function("s:GetFlag",
+                     \ [g:prospector_flag_name_no_style_warnings[2:]]),
+        \ g:prospector_flag_name_test_warnings:
+            \ function("s:GetFlag",
+                     \ [g:prospector_flag_name_test_warnings[2:]]),}
 
 " Prospector options {{{3
 let g:prospector_option_name_profile = '--profile'
@@ -70,6 +82,10 @@ function! saloon#prospector#getToolsAvailable() abort
           \ 'profile-validator', 'pyflakes', 'pylint', 'pyroma', 'vulture']
 endfunction
 
+function! saloon#prospector#getFlagNames() abort
+    return keys(g:prospector_flags)
+endfunction
+
 " Script functions {{{1
 "Function: saloon#prospector#Init() function {{{2
 function! saloon#prospector#Init() abort
@@ -98,6 +114,9 @@ function! s:updateProspectorCommand() abort
     endfor
 
     let g:ale_python_prospector_options = join(l:command)
+    if g:Saloon.IsOpen()
+        call g:Saloon.refreshSaloon()
+    endif
 endfunction
 "}}}
 " Public API {{{1
@@ -183,9 +202,6 @@ function! saloon#prospector#ToggleTool(tool) abort
         call remove(g:prospector_option_value_tool, l:index)
     endif
     call s:updateProspectorCommand()
-    if g:Saloon.IsOpen()
-        call g:Saloon.refreshSaloon()
-    endif
 endfunction
 
 "Function: saloon#prospector#ToggleToolBandit() function {{{3

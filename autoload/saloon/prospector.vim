@@ -114,6 +114,15 @@ function! s:updateProspectorCommand() abort
     endfor
 
     let g:ale_python_prospector_options = join(l:command)
+    if g:SaloonAutoLint && get(g:, 'loaded_ale', 0)
+        if winnr() !=# g:Saloon.GetWinNum()
+            execute "ALELint"
+        else
+            call saloon#exec('wincmd p', 1)
+            execute "ALELint"
+            call saloon#exec('wincmd p', 1)
+        endif
+    endif
     if g:Saloon.IsOpen()
         call g:Saloon.refreshSaloon()
     endif

@@ -35,7 +35,10 @@ function! s:prospectorToggleTool() abort
     let l:old_reg = @"
     yank
     let l:cur_line = split(trim(@"))
-    call saloon#prospector#ToggleTool(tolower(l:cur_line[-1]))
+    let l:option = tolower(l:cur_line[-1])
+    if saloon#prospector#ToggleTool(l:option) < 0
+        call saloon#prospector#ToggleFlag(l:option)
+    endif
     let @" = l:old_reg
 endfunction
 

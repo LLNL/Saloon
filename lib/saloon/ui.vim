@@ -102,8 +102,7 @@ function! s:UI.render()
     let text .= "    (d)ecrease\n\n"
 
     let text .= "  Linters:\n"
-    let l:tools = saloon#prospector#getToolsAvailable()
-    for tool in l:tools
+    for tool in saloon#prospector#getToolsAvailable()
         if index(g:prospector_option_value_tool, tool) < 0
             let l:is_enabled = "(off)"
         else
@@ -114,11 +113,7 @@ function! s:UI.render()
     endfor
 
     let text .= "\n  Flags:\n"
-    let l:flags = saloon#prospector#getFlagNames()
-    for flag in l:flags
-        if !has_key(g:prospector_flags, flag)
-            continue
-        endif
+    for flag in saloon#prospector#getFlagNames()
         if g:prospector_flags[flag]()
             let l:is_enabled = "(on) "
         else

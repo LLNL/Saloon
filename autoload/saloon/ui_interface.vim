@@ -7,10 +7,10 @@ let g:loaded_saloon_ui_interace_autoload = 1
 function! saloon#ui_interface#createDefaultBindings() abort
     let s = '<SNR>' . s:SID() . '_'
 
-    call SaloonAddKeyMap({ 'key': g:SaloonMapQuit, 'scope': 'all', 'callback': s.'closeSaloonWindow' })
-    call SaloonAddKeyMap({ 'key': '<CR>', 'scope': 'all', 'callback': s.'prospectorToggleTool' })
-    call SaloonAddKeyMap({ 'key': 'i', 'scope': 'all', 'callback': s.'prospectorIncreaseStrictness' })
-    call SaloonAddKeyMap({ 'key': 'd', 'scope': 'all', 'callback': s.'prospectorDecreaseStrictness' })
+    call SaloonAddKeyMap({ 'key': g:SaloonEventDecreaseStrictness, 'scope': 'all', 'callback': s.'prospectorDecreaseStrictness' })
+    call SaloonAddKeyMap({ 'key': g:SaloonEventIncreaseStrictness, 'scope': 'all', 'callback': s.'prospectorIncreaseStrictness' })
+    call SaloonAddKeyMap({ 'key': g:SaloonEventToggle, 'scope': 'all', 'callback': s.'prospectorToggleTool' })
+    call SaloonAddKeyMap({ 'key': g:SaloonEventQuit, 'scope': 'all', 'callback': s.'closeSaloonWindow' })
 endfunction
 
 
@@ -35,9 +35,11 @@ function! s:prospectorToggleTool() abort
     let l:old_reg = @"
     yank
     let l:cur_line = split(trim(@"))
-    let l:option = tolower(l:cur_line[-1])
-    if saloon#prospector#ToggleTool(l:option) < 0
-        call saloon#prospector#ToggleFlag(l:option)
+    if !empty(l:cur_line)
+        let l:option = tolower(l:cur_line[-1])
+        if saloon#prospector#ToggleTool(l:option) < 0
+            call saloon#prospector#ToggleFlag(l:option)
+        endif
     endif
     let @" = l:old_reg
 endfunction

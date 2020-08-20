@@ -76,6 +76,8 @@ function! s:UI.render()
     let curLine = line('.')
     let curCol = col('.')
     let topLine = line('w0')
+    let l:indent_title = '  '
+    let l:indent_item = '    '
 
     " delete all lines in the buffer (being careful not to clobber a register)
     silent 1,$delete _
@@ -92,34 +94,44 @@ function! s:UI.render()
     let text .= "Prospector settings:\n"
 
     let l:levels = saloon#prospector#getStrictnessLevels()
-    let text .= "  Strictness Level:\n"
-    let text .= "    " .. string(range(len(l:levels) + 1)) .. "\n"
+    let text = l:indent_title .. "Strictness Level:\n"
+    let text .= l:indent_item .. string(range(len(l:levels) + 1)) .. "\n"
 
     call s:UI.updateStrictnessSynHl(index(l:levels,
                                   \ g:prospector_option_value_strictness))
 
-    let text .= "    (i)ncrease\n"
-    let text .= "    (d)ecrease\n\n"
+    let text .= l:indent_item .. "("
+    if g:SaloonEventIncreaseStrictness == 'i'
+        let text .= "i)ncrease\n"
+    else
+        let text .= g:SaloonEventIncreaseStrictness .. ") increase\n"
+    endif
+    let text .= l:indent_item .. "("
+    if g:SaloonEventDecreaseStrictness == 'd'
+        let text .= "d)ecrease\n\n"
+    else
+        let text .= g:SaloonEventIncreaseStrictness .. ") decrease\n\n"
+    endif
 
-    let text .= "  Linters:\n"
+    let text .= l:indent_title .. "Linters:\n"
     for tool in saloon#prospector#getToolsAvailable()
         if index(g:prospector_option_value_tool, tool) < 0
             let l:is_enabled = "(off)"
         else
             let l:is_enabled = "(on) "
         endif
-        let text .= "    " .. l:is_enabled .. " "
+        let text .= l:indent_item .. l:is_enabled .. " "
         let text .= toupper(tool[0]) .. tool[1:] .. "\n"
     endfor
 
-    let text .= "\n  Flags:\n"
-    for flag in saloon#prospector#getFlagNames()
+    let text .= "\n" .. l:indent_title .. "Flags:\n"
+    for flag in sort(saloon#prospector#getFlagNames())
         if g:prospector_flags[flag]()
             let l:is_enabled = "(on) "
         else
             let l:is_enabled = "(off)"
         endif
-        let text .= "    " .. l:is_enabled .. " "
+        let text .= l:indent_item .. l:is_enabled .. " "
         let text .= toupper(flag[2]) .. flag[3:] .. "\n"
     endfor
     silent! put =text

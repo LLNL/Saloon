@@ -3,104 +3,262 @@
 ===============================================================================
 CONTENTS                                                      *saloon-contents*
 
-    1. Introduction.........................|saloon-introduction|
-    2. Commands.................................|saloon-commands|
-    3. Customisation.......................|saloon-customisation|
+    Introduction.............................|saloon-introduction|
+    Commands/KeyBindings.....................|saloon-commands|
+    - SaloonCommands...........................|SaloonCommands|
+    - ProspectorCommands.......................|ProspectorCommands|
+    GlobalOptions............................|saloon-options|
 
 ===============================================================================
-1. Introduction                                           *saloon-introduction*
+Introduction                                              *saloon-introduction*
 
-Saloon is a wrapper around ALE and Prospector.
+Saloon is a Vim plugin designed to help Python developers write higher
+quality code by simplifying interaction with ALE's capabilities.
 
 
 ===============================================================================
-2. Commands                                                   *saloon-commands*
+Commands/KeyBindings                                          *saloon-commands*
 
 -------------------------------------------------------------------------------
-2.1. Prospector Commands                             *SaloonProspectorCommands*
+Saloon Commands                                                *SaloonCommands*
+-------------------------------------------------------------------------------
+
+Saloon                                                                 *Saloon*
+
+  Open Saloon window.
+  A plug mapping `<Plug>(saloon_open)` is defined for this command.
+
+SaloonClose                                                       *SaloonClose*
+
+  Close Saloon window.
+  A plug mapping `<Plug>(saloon_close)` is defined for this command.
+
+SaloonToggle                                                     *SaloonToggle*
+
+  Toggle Saloon window.
+  A plug mapping `<Plug>(saloon_toggle)` is defined for this command.
+
+-------------------------------------------------------------------------------
+Prospector Commands                                  *SaloonProspectorCommands*
 -------------------------------------------------------------------------------
 
 ProspectorOnly                                                 *ProspectorOnly*
 
   Override ALE's linter settings and enable only prospector for python files.
+  Plug mapping `<Plug>(saloon_prospector_only)` used as shown below. >
 
-ToggleFlagDocWarnings                                   *ToggleFlagDocWarnings*
+    nmap <localleader>p <Plug>(saloon_prospector_only)
+<
+ProspectorMoreStrict                                     *ProspectorMoreStrict*
 
-  Enable/disable warnings about documentation.
+  Increase strictness of checker. Based on prospector's default profiles.
+  Strictness levels are: [veryhigh, high, medium, low, verylow] or (off).
+  Plug mapping `<Plug>(saloon_prospector_more_strict)` used as shown below. >
 
-ToggleFlagNoAutodetect                                 *ToggleFlagNoAutodetect*
+    nmap <localleader>m <Plug>(saloon_prospector_more_strict)
+<
+ProspectorLessStrict                                     *ProspectorLessStrict*
+
+  Decrease strictness of checker. Based on prospector's default profiles.
+  Strictness levels are: [veryhigh, high, medium, low, verylow] or (off).
+  Plug mapping `<Plug>(saloon_prospector_less_strict)` used as shown below. >
+
+    nmap <localleader>l <Plug>(saloon_prospector_less_strict)
+<
+ProspectorTogglegDocWarnings                     *ProspectorTogglegDocWarnings*
+
+  Enable/disable warnings about documentation. Overlaps with PEP257.
+  TODO: Explain how this setting and PEP257 overlap.
+  Plug mapping `<Plug>(saloon_prospector_toggle_doc_warnings)` used as shown below. >
+
+    nmap <localleader>dw <Plug>(saloon_prospector_toggle_doc_warnings)
+<
+ProspectorToggleNoAutodetect                     *ProspectorToggleNoAutodetect*
 
   TODO:
   Not sure how practical this is. Need to test with Django and similar
   frameworks and libraries.
+  Plug mapping `<Plug>(saloon_prospector_toggle_no_autodetect)` used as shown below. >
 
-ToggleFlagNoBlending                                     *ToggleFlagNoBlending*
+    nmap <localleader>na <Plug>(saloon_prospector_toggle_no_autodetect)
+<
+ProspectorToggleNoBlending                         *ProspectorToggleNoBlending*
 
   Turn off blending of messages. Prospector will merge together messages
   from different tools if they represent the same error. Use this option to
   see all unmerged messages.
+  Plug mapping `<Plug>(saloon_prospector_toggle_no_blending)` used as shown below. >
 
-ToggleFlagNoStyleWarnings                           *ToggleFlagNoStyleWarnings*
+    nmap <localleader>nb <Plug>(saloon_prospector_toggle_no_blending)
+<
+ProspectorToggleNoStyleWarnings               *ProspectorToggleNoStyleWarnings*
 
   Enable/disable excluding warnings about style.
   This disables the PEP8 tool and similar checks for formatting.
+  Plug mapping `<Plug>(saloon_prospector_toggle_no_style_warnings)` used as shown below. >
 
-ToggleFlagTestWarnings                                 *ToggleFlagTestWarnings*
+    nmap <localleader>sw <Plug>(saloon_prospector_toggle_no_style_warnings)
+<
+ProspectorToggleTestWarnings                     *ProspectorToggleTestWarnings*
 
   Enable/disable checking test modules and packages.
+  Plug mapping `<Plug>(saloon_prospector_toggle_test_warnings)` used as shown below. >
 
-MoreStrict                                                         *MoreStrict*
+    nmap <localleader>tw <Plug>(saloon_prospector_toggle_test_warnings)
+<
+ProspectorToggleBandit                                 *ProspectorToggleBandit*
 
-  Increase strictness of checker. Based on prospector's default profiles.
-  Strictness levels are: [veryhigh, high, medium, low, verylow] or (off).
+  Enable/disable Bandit in list of prospector's used linters.
+  A plug mapping `<Plug>(saloon_prospector_toggle_bandit)` is defined for this command.
+  Plug mapping `<Plug>(saloon_prospector_toggle_bandit)` used as shown below. >
 
-LessStrict                                                         *LessStrict*
+    nmap <localleader>b <Plug>(saloon_prospector_toggle_bandit)
+<
+ProspectorToggleDodgy                                   *ProspectorToggleDodgy*
 
-  Decrease strictness of checker. Based on prospector's default profiles.
-  Strictness levels are: [veryhigh, high, medium, low, verylow] or (off).
+  Enable/disable Dodgy in list of prospector's used linters.
+  Plug mapping `<Plug>(saloon_prospector_toggle_dodgy)` used as shown below. >
 
-ToggleToolBandit                                             *ToggleToolBandit*
+    nmap <localleader>d <Plug>(saloon_prospector_toggle_dodgy)
+<
+ProspectorToggleFrosted                               *ProspectorToggleFrosted*
 
-ToggleToolDodgy                                               *ToggleToolDodgy*
+  Enable/disable Frosted in list of prospector's used linters.
+  Plug mapping `<Plug>(saloon_prospector_toggle_frosted)` used as shown below. >
 
-ToggleToolFrosted                                           *ToggleToolFrosted*
+    nmap <localleader>f <Plug>(saloon_prospector_toggle_frosted)
+<
+ProspectorToggleMccabe                                 *ProspectorToggleMccabe*
 
-ToggleToolMccabe                                             *ToggleToolMccabe*
+  Enable/disable Mccabe in list of prospector's used linters.
+  Plug mapping `<Plug>(saloon_prospector_toggle_mccabe)` used as shown below. >
 
-ToggleToolMyPy                                                 *ToggleToolMyPy*
+    nmap <localleader>mc <Plug>(saloon_prospector_toggle_mccabe)
+<
+ProspectorToggleMyPy                                     *ProspectorToggleMyPy*
 
-ToggleToolPep257                                             *ToggleToolPep257*
+  Enable/disable MyPy in list of prospector's used linters.
+  Plug mapping `<Plug>(saloon_prospector_toggle_mypy)` used as shown below. >
 
-ToggleToolPep8                                                 *ToggleToolPep8*
+    nmap <localleader>my <Plug>(saloon_prospector_toggle_mypy)
+<
+ProspectorTogglePep257                                 *ProspectorTogglePep257*
 
-ToggleToolProfileValidator                         *ToggleToolProfileValidator*
+  Enable/disable PEP257 in list of prospector's used linters.
+  Plug mapping `<Plug>(saloon_prospector_toggle_pep257)` used as shown below. >
 
-ToggleToolPyflakes                                         *ToggleToolPyflakes*
+    nmap <localleader>2 <Plug>(saloon_prospector_toggle_pep257)
+<
+ProspectorTogglePep8                                     *ProspectorTogglePep8*
 
-ToggleToolPylint                                             *ToggleToolPylint*
+  Enable/disable PEP8 in list of prospector's used linters.
+  Plug mapping `<Plug>(saloon_prospector_toggle_pep8)` used as shown below. >
 
-ToggleToolPyroma                                             *ToggleToolPyroma*
+    nmap <localleader>8 <Plug>(saloon_prospector_toggle_pep8)
+<
+ProspectorToggleProfileValidator             *ProspectorToggleProfileValidator*
 
-ToggleToolVulture                                           *ToggleToolVulture*
+  Enable/disable Profile Validator in list of prospector's used linters.
+  Plug mapping `<Plug>(saloon_prospector_toggle_profile_validator)` used as shown below. >
 
+    nmap <localleader>pv <Plug>(saloon_prospector_toggle_profile_validator)
+<
+ProspectorTogglePyflakes                             *ProspectorTogglePyflakes*
+
+  Enable/disable Pyflakes in list of prospector's used linters.
+  Plug mapping `<Plug>(saloon_prospector_toggle_pyflakes)` used as shown below. >
+
+    nmap <localleader>pf <Plug>(saloon_prospector_toggle_pyflakes)
+<
+ProspectorTogglePylint                                 *ProspectorTogglePylint*
+
+  Enable/disable Pylint in list of prospector's used linters.
+  Plug mapping `<Plug>(saloon_prospector_toggle_pylint)` used as shown below. >
+
+    nmap <localleader>l <Plug>(saloon_prospector_toggle_pylint)
+<
+ProspectorTogglePyroma                                 *ProspectorTogglePyroma*
+
+  Enable/disable Pyroma in list of prospector's used linters.
+  Plug mapping `<Plug>(saloon_prospector_toggle_pyroma)` used as shown below. >
+
+    nmap <localleader>r <Plug>(saloon_prospector_toggle_pyroma)
+<
+ProspectorToggleVulture                               *ProspectorToggleVulture*
+
+  Enable/disable Vulture in list of prospector's used linters.
+  Plug mapping `<Plug>(saloon_prospector_toggle_vulture)` used as shown below. >
+
+    nmap <localleader>v <Plug>(saloon_prospector_toggle_vulture)
+<
 
 ===============================================================================
-3. Customisation                                         *saloon-customisation*
+Global Options                                                 *saloon-options*
 
+g:SaloonAutoLint                                             *g:SaloonAutoLint*
 
--------------------------------------------------------------------------------
-3.1. Settings summary                                  *SaloonSettingsSummary*
--------------------------------------------------------------------------------
-                                                                *SaloonWinPos*
-Values: "left" or "right"
-Default: "right".
+  Type: |Number|
+  Default: `1`
 
-This setting is used to determine where the Saloon window is placed on the
-screen.
+  Determines if Saloon should rerun linters each time configurations in the
+  Saloon UI window are made. Enabled by default.
 
-This setting makes it possible to use two different explorer plugins
-simultaneously. For example, you could have the NERDTree plugin on the left
-of the window and the Saloon on the right.
+g:SaloonEventIncreaseStrictness               *g:SaloonEventIncreaseStrictness*
+
+  Type: |String|
+  Default: `i`
+
+  Key used in Saloon UI to increase Prospector strictness.
+  Prospector provides five "profiles" that scale downward in strictness.
+  The strictest profile provides the most checks and subsequent profiles
+  ease up on checks performed by specifying which linters to disable or
+  individual checks to ignore. Lenient profiles inherit from their stricter
+  neighbor, so "5" inherits from "4", "4" inherits from "3", and so on.
+
+g:SaloonEventDecreaseStrictness               *g:SaloonEventDecreaseStrictness*
+
+  Type: |String|
+  Default: `d`
+
+  Key used in Saloon UI to decrease Prospector strictness.
+  Prospector provides five "profiles" that scale downward in strictness.
+  The strictest profile provides the most checks and subsequent profiles
+  ease up on checks performed by specifying which linters to disable or
+  individual checks to ignore. Lenient profiles inherit from their stricter
+  neighbor, so "5" inherits from "4", "4" inherits from "3", and so on.
+
+g:SaloonEventToggle                                       *g:SaloonEventToggle*
+
+  Type: |String|
+  Default: `<CR>`
+
+  Key used in Saloon UI to toggle options on or off.
+  See |keycodes| for alternatives.
+
+g:SaloonEventQuit                                           *g:SaloonEventQuit*
+
+  Type: |String|
+  Default: `q`
+
+  Key used in Saloon UI to close Saloon window.
+
+g:SaloonWinPos                                                 *g:SaloonWinPos*
+
+  Type: |String|
+  Values: `left` or `right`
+  Default: `right`
+
+  Determines where the Saloon window is placed on the screen.
+  This setting makes it possible to use two different explorer plugins
+  simultaneously. For example, you could have the NERDTree plugin on the left
+  of the window and the Saloon on the right.
+
+g:SaloonWinWidth                                             *g:SaloonWinWidth*
+
+  Type: |Number|
+  Default: `31`
+
+  Determines the width of the Saloon UI window.
 
 ===============================================================================
   vim:tw=78:ts=8:ft=help:norl:

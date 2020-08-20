@@ -6,11 +6,6 @@ let g:saloon_loaded_autoload = 1
 
 scriptencoding utf-8
 
-" TODO: make configurable to the user
-let g:SaloonWinPos = 'right'
-let g:SaloonWinWidth = 31
-
-
 " FUNCTION: saloon#exec(cmd, ignoreAll) {{{2
 " Same as :exec cmd but, if ignoreAll is TRUE, set eventignore=all for the duration
 " Borrowed from NERDTree plugin.
@@ -46,26 +41,26 @@ function! saloon#setupCommands() abort
     command! -n=0 -bar ProspectorOnly :call saloon#ProspectorOnly()
 
     " Flags
-    command! -bar ToggleFlagDocWarnings :call saloon#prospector#ToggleFlagDocWarnings()
-    command! -bar ToggleFlagNoAutodetect :call saloon#prospector#ToggleFlagNoAutodetect()
-    command! -bar ToggleFlagNoBlending :call saloon#prospector#ToggleFlagNoBlending()
-    command! -bar ToggleFlagNoStyleWarnings :call saloon#prospector#ToggleFlagNoStyleWarnings()
-    command! -bar ToggleFlagTestWarnings :call saloon#prospector#ToggleFlagTestWarnings()
+    command! -bar ProspectorToggleDocWarnings :call saloon#prospector#ToggleFlagDocWarnings()
+    command! -bar ProspectorToggleNoAutodetect :call saloon#prospector#ToggleFlagNoAutodetect()
+    command! -bar ProspectorToggleNoBlending :call saloon#prospector#ToggleFlagNoBlending()
+    command! -bar ProspectorToggleNoStyleWarnings :call saloon#prospector#ToggleFlagNoStyleWarnings()
+    command! -bar ProspectorToggleTestWarnings :call saloon#prospector#ToggleFlagTestWarnings()
     " Options
-    command! -bar MoreStrict :call saloon#prospector#IncreaseStrictness()
-    command! -bar LessStrict :call saloon#prospector#DecreaseStrictness()
-    command! -bar ToggleToolBandit :call saloon#prospector#ToggleToolBandit()
-    command! -bar ToggleToolDodgy :call saloon#prospector#ToggleToolDodgy()
-    command! -bar ToggleToolFrosted :call saloon#prospector#ToggleToolFrosted()
-    command! -bar ToggleToolMccabe :call saloon#prospector#ToggleToolMccabe()
-    command! -bar ToggleToolMyPy :call saloon#prospector#ToggleToolMyPy()
-    command! -bar ToggleToolPep257 :call saloon#prospector#ToggleToolPep257()
-    command! -bar ToggleToolPep8 :call saloon#prospector#ToggleToolPep8()
-    command! -bar ToggleToolProfileValidator :call saloon#prospector#ToggleToolProfileValidator()
-    command! -bar ToggleToolPyflakes :call saloon#prospector#ToggleToolPyflakes()
-    command! -bar ToggleToolPylint :call saloon#prospector#ToggleToolPylint()
-    command! -bar ToggleToolPyroma :call saloon#prospector#ToggleToolPyroma()
-    command! -bar ToggleToolVulture :call saloon#prospector#ToggleToolVulture()
+    command! -bar ProspectorMoreStrict :call saloon#prospector#IncreaseStrictness()
+    command! -bar ProspectorLessStrict :call saloon#prospector#DecreaseStrictness()
+    command! -bar ProspectorToggleBandit :call saloon#prospector#ToggleToolBandit()
+    command! -bar ProspectorToggleDodgy :call saloon#prospector#ToggleToolDodgy()
+    command! -bar ProspectorToggleFrosted :call saloon#prospector#ToggleToolFrosted()
+    command! -bar ProspectorToggleMccabe :call saloon#prospector#ToggleToolMccabe()
+    command! -bar ProspectorToggleMyPy :call saloon#prospector#ToggleToolMyPy()
+    command! -bar ProspectorTogglePep257 :call saloon#prospector#ToggleToolPep257()
+    command! -bar ProspectorTogglePep8 :call saloon#prospector#ToggleToolPep8()
+    command! -bar ProspectorToggleProfileValidator :call saloon#prospector#ToggleToolProfileValidator()
+    command! -bar ProspectorTogglePyflakes :call saloon#prospector#ToggleToolPyflakes()
+    command! -bar ProspectorTogglePylint :call saloon#prospector#ToggleToolPylint()
+    command! -bar ProspectorTogglePyroma :call saloon#prospector#ToggleToolPyroma()
+    command! -bar ProspectorToggleVulture :call saloon#prospector#ToggleToolVulture()
 
 endfunction
 " Public API {{{1

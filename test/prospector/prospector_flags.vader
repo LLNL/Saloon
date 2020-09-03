@@ -1,0 +1,271 @@
+Before (disable all flags):
+  SaloonEnableProspector
+  ProspectorDisableAllFlags
+
+Execute (enable 'doc warnings'):
+  ProspectorEnableDocWarnings
+  let disabled_flags = saloon#prospector#GetDisabledFlags()
+  let enabled_flags = saloon#prospector#GetEnabledFlags()
+
+Then ('doc warnings' was enabled):
+  Assert has_key(enabled_flags, g:prospector_flag_doc_warnings)
+  Assert !has_key(disabled_flags, g:prospector_flag_doc_warnings)
+  Assert (g:ale_python_prospector_options =~#
+        \ g:prospector_flag_doc_warnings)
+
+Execute (toggle 'doc warnings' on):
+  ProspectorToggleDocWarnings
+  let disabled_flags = saloon#prospector#GetDisabledFlags()
+  let enabled_flags = saloon#prospector#GetEnabledFlags()
+
+Then ('doc warnings' was toggled on):
+  Assert has_key(enabled_flags, g:prospector_flag_doc_warnings)
+  Assert !has_key(disabled_flags, g:prospector_flag_doc_warnings)
+  Assert (g:ale_python_prospector_options =~#
+        \ g:prospector_flag_doc_warnings)
+
+Execute (enable 'full PEP8'):
+  ProspectorEnableFullPep8
+  let disabled_flags = saloon#prospector#GetDisabledFlags()
+  let enabled_flags = saloon#prospector#GetEnabledFlags()
+
+Then ('full PEP8' was enabled):
+  Assert has_key(enabled_flags, g:prospector_flag_full_pep8)
+  Assert !has_key(disabled_flags, g:prospector_flag_full_pep8)
+  Assert (g:ale_python_prospector_options =~#
+        \ g:prospector_flag_full_pep8)
+
+Execute (toggle 'full PEP8' on):
+  ProspectorToggleFullPep8
+  let disabled_flags = saloon#prospector#GetDisabledFlags()
+  let enabled_flags = saloon#prospector#GetEnabledFlags()
+
+Then ('full PEP8' was toggled on):
+  Assert has_key(enabled_flags, g:prospector_flag_full_pep8)
+  Assert !has_key(disabled_flags, g:prospector_flag_full_pep8)
+  Assert (g:ale_python_prospector_options =~#
+        \ g:prospector_flag_full_pep8)
+
+Execute (enable 'no autodection'):
+  ProspectorEnableNoAutodetect
+  let disabled_flags = saloon#prospector#GetDisabledFlags()
+  let enabled_flags = saloon#prospector#GetEnabledFlags()
+
+Then ('no autodection' was enabled):
+  Assert has_key(enabled_flags, g:prospector_flag_no_autodetect)
+  Assert !has_key(disabled_flags, g:prospector_flag_no_autodetect)
+  Assert (g:ale_python_prospector_options =~#
+        \ g:prospector_flag_no_autodetect)
+
+Execute (toggle 'no autodection' on):
+  ProspectorToggleNoAutodetect
+  let disabled_flags = saloon#prospector#GetDisabledFlags()
+  let enabled_flags = saloon#prospector#GetEnabledFlags()
+
+Then ('no autodection' was toggled on):
+  Assert has_key(enabled_flags, g:prospector_flag_no_autodetect)
+  Assert !has_key(disabled_flags, g:prospector_flag_no_autodetect)
+  Assert (g:ale_python_prospector_options =~#
+        \ g:prospector_flag_no_autodetect)
+
+Execute (enable 'no blending'):
+  ProspectorEnableNoBlending
+  let disabled_flags = saloon#prospector#GetDisabledFlags()
+  let enabled_flags = saloon#prospector#GetEnabledFlags()
+
+Then ('no blending' was enabled):
+  Assert has_key(enabled_flags, g:prospector_flag_no_blending)
+  Assert !has_key(disabled_flags, g:prospector_flag_no_blending)
+  Assert (g:ale_python_prospector_options =~#
+        \ g:prospector_flag_no_blending)
+
+Execute (toggle 'no blending' on):
+  ProspectorToggleNoBlending
+  let disabled_flags = saloon#prospector#GetDisabledFlags()
+  let enabled_flags = saloon#prospector#GetEnabledFlags()
+
+Then ('no blending' was toggled on):
+  Assert has_key(enabled_flags, g:prospector_flag_no_blending)
+  Assert !has_key(disabled_flags, g:prospector_flag_no_blending)
+  Assert (g:ale_python_prospector_options =~#
+        \ g:prospector_flag_no_blending)
+
+Execute (enable 'no style warnings'):
+  ProspectorEnableNoStyleWarnings
+  let disabled_flags = saloon#prospector#GetDisabledFlags()
+  let enabled_flags = saloon#prospector#GetEnabledFlags()
+
+Then ('no style warnings' was enabled):
+  Assert has_key(enabled_flags, g:prospector_flag_no_style_warnings)
+  Assert !has_key(disabled_flags, g:prospector_flag_no_style_warnings)
+  Assert (g:ale_python_prospector_options =~#
+        \ g:prospector_flag_no_style_warnings)
+
+Execute (toggle 'no style warnings' on):
+  ProspectorToggleNoStyleWarnings
+  let disabled_flags = saloon#prospector#GetDisabledFlags()
+  let enabled_flags = saloon#prospector#GetEnabledFlags()
+
+Then ('no style warnings' was toggled on):
+  Assert has_key(enabled_flags, g:prospector_flag_no_style_warnings)
+  Assert !has_key(disabled_flags, g:prospector_flag_no_style_warnings)
+  Assert (g:ale_python_prospector_options =~#
+        \ g:prospector_flag_no_style_warnings)
+
+Execute (enable 'test warnings'):
+  ProspectorEnableTestWarnings
+  let disabled_flags = saloon#prospector#GetDisabledFlags()
+  let enabled_flags = saloon#prospector#GetEnabledFlags()
+
+Then ('test warnings' was enabled):
+  Assert has_key(enabled_flags, g:prospector_flag_test_warnings)
+  Assert !has_key(disabled_flags, g:prospector_flag_test_warnings)
+  Assert (g:ale_python_prospector_options =~#
+        \ g:prospector_flag_test_warnings)
+
+Execute (toggle 'test warnings' on):
+  ProspectorToggleTestWarnings
+  let disabled_flags = saloon#prospector#GetDisabledFlags()
+  let enabled_flags = saloon#prospector#GetEnabledFlags()
+
+Then ('test warnings' was toggled on):
+  Assert has_key(enabled_flags, g:prospector_flag_test_warnings)
+  Assert !has_key(disabled_flags, g:prospector_flag_test_warnings)
+  Assert (g:ale_python_prospector_options =~#
+        \ g:prospector_flag_test_warnings)
+
+Before (enable flags):
+  SaloonEnableProspector
+  ProspectorEnableAllFlags
+
+Execute (disable 'doc warnings'):
+  ProspectorDisableDocWarnings
+  let disabled_flags = saloon#prospector#GetDisabledFlags()
+  let enabled_flags = saloon#prospector#GetEnabledFlags()
+
+Then ('doc warnings' was disabled):
+  Assert has_key(disabled_flags, g:prospector_flag_doc_warnings)
+  Assert !has_key(enabled_flags, g:prospector_flag_doc_warnings)
+  Assert (g:ale_python_prospector_options !~#
+        \ g:prospector_flag_doc_warnings)
+
+Execute (toggle 'doc warnings' off):
+  ProspectorToggleDocWarnings
+  let disabled_flags = saloon#prospector#GetDisabledFlags()
+  let enabled_flags = saloon#prospector#GetEnabledFlags()
+
+Then ('doc warnings' was toggled off):
+  Assert has_key(disabled_flags, g:prospector_flag_doc_warnings)
+  Assert !has_key(enabled_flags, g:prospector_flag_doc_warnings)
+  Assert (g:ale_python_prospector_options !~#
+        \ g:prospector_flag_doc_warnings)
+
+Execute (disable 'full PEP8'):
+  ProspectorDisableFullPep8
+  let disabled_flags = saloon#prospector#GetDisabledFlags()
+  let enabled_flags = saloon#prospector#GetEnabledFlags()
+
+Then ('full PEP8' was disabled):
+  Assert has_key(disabled_flags, g:prospector_flag_full_pep8)
+  Assert !has_key(enabled_flags, g:prospector_flag_full_pep8)
+  Assert (g:ale_python_prospector_options !~#
+        \ g:prospector_flag_full_pep8)
+
+Execute (toggle 'full PEP8' off):
+  ProspectorToggleFullPep8
+  let disabled_flags = saloon#prospector#GetDisabledFlags()
+  let enabled_flags = saloon#prospector#GetEnabledFlags()
+
+Then ('full PEP8' was toggled off):
+  Assert has_key(disabled_flags, g:prospector_flag_full_pep8)
+  Assert !has_key(enabled_flags, g:prospector_flag_full_pep8)
+  Assert (g:ale_python_prospector_options !~#
+        \ g:prospector_flag_full_pep8)
+
+Execute (disable 'no autodetection'):
+  ProspectorDisableNoAutodetect
+  let disabled_flags = saloon#prospector#GetDisabledFlags()
+  let enabled_flags = saloon#prospector#GetEnabledFlags()
+
+Then ('no autodetection' was disabled):
+  Assert has_key(disabled_flags, g:prospector_flag_no_autodetect)
+  Assert !has_key(enabled_flags, g:prospector_flag_no_autodetect)
+  Assert (g:ale_python_prospector_options !~#
+        \ g:prospector_flag_no_autodetect)
+
+Execute (toggle 'no autodetection' off):
+  ProspectorToggleNoAutodetect
+  let disabled_flags = saloon#prospector#GetDisabledFlags()
+  let enabled_flags = saloon#prospector#GetEnabledFlags()
+
+Then ('no autodetection' was toggled off):
+  Assert has_key(disabled_flags, g:prospector_flag_no_autodetect)
+  Assert !has_key(enabled_flags, g:prospector_flag_no_autodetect)
+  Assert (g:ale_python_prospector_options !~#
+        \ g:prospector_flag_no_autodetect)
+
+Execute (disable 'no blending'):
+  ProspectorDisableNoBlending
+  let disabled_flags = saloon#prospector#GetDisabledFlags()
+  let enabled_flags = saloon#prospector#GetEnabledFlags()
+
+Then ('no blending' was disabled):
+  Assert has_key(disabled_flags, g:prospector_flag_no_blending)
+  Assert !has_key(enabled_flags, g:prospector_flag_no_blending)
+  Assert (g:ale_python_prospector_options !~#
+        \ g:prospector_flag_no_blending)
+
+Execute (toggle 'no blending' off):
+  ProspectorToggleNoBlending
+  let disabled_flags = saloon#prospector#GetDisabledFlags()
+  let enabled_flags = saloon#prospector#GetEnabledFlags()
+
+Then ('no blending' was toggled off):
+  Assert has_key(disabled_flags, g:prospector_flag_no_blending)
+  Assert !has_key(enabled_flags, g:prospector_flag_no_blending)
+  Assert (g:ale_python_prospector_options !~#
+        \ g:prospector_flag_no_blending)
+
+Execute (disable no 'style warnings'):
+  ProspectorDisableNoStyleWarnings
+  let disabled_flags = saloon#prospector#GetDisabledFlags()
+  let enabled_flags = saloon#prospector#GetEnabledFlags()
+
+Then ('no style warnings' was disabled):
+  Assert has_key(disabled_flags, g:prospector_flag_no_style_warnings)
+  Assert !has_key(enabled_flags, g:prospector_flag_no_style_warnings)
+  Assert (g:ale_python_prospector_options !~#
+        \ g:prospector_flag_no_style_warnings)
+
+Execute (toggle 'no style warnings' off):
+  ProspectorToggleNoStyleWarnings
+  let disabled_flags = saloon#prospector#GetDisabledFlags()
+  let enabled_flags = saloon#prospector#GetEnabledFlags()
+
+Then ('no style warnings' was toggled off):
+  Assert has_key(disabled_flags, g:prospector_flag_no_style_warnings)
+  Assert !has_key(enabled_flags, g:prospector_flag_no_style_warnings)
+  Assert (g:ale_python_prospector_options !~#
+        \ g:prospector_flag_no_style_warnings)
+
+Execute (disable 'test warnings'):
+  ProspectorDisableTestWarnings
+  let disabled_flags = saloon#prospector#GetDisabledFlags()
+  let enabled_flags = saloon#prospector#GetEnabledFlags()
+
+Then ('test warnings' was disabled):
+  Assert has_key(disabled_flags, g:prospector_flag_test_warnings)
+  Assert !has_key(enabled_flags, g:prospector_flag_test_warnings)
+  Assert (g:ale_python_prospector_options !~#
+        \ g:prospector_flag_test_warnings)
+
+Execute (toggle 'test warnings' off):
+  ProspectorToggleTestWarnings
+  let disabled_flags = saloon#prospector#GetDisabledFlags()
+  let enabled_flags = saloon#prospector#GetEnabledFlags()
+
+Then ('test warnings' was toggled off):
+  Assert has_key(disabled_flags, g:prospector_flag_test_warnings)
+  Assert !has_key(enabled_flags, g:prospector_flag_test_warnings)
+  Assert (g:ale_python_prospector_options !~#
+        \ g:prospector_flag_test_warnings)

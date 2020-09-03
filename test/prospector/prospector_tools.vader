@@ -1,0 +1,37 @@
+Before (enable Prospector):
+  SaloonEnableProspector
+  call saloon#prospector#DisableAllTools()
+
+Execute (enable linter 'bandit'):
+  call saloon#prospector#EnableFlagDocWarnings()
+  let disabled_flags = saloon#prospector#GetDisabledFlags()
+  let enabled_flags = saloon#prospector#GetEnabledFlags()
+
+Then (linter 'bandit' was enabled):
+  Assert has_key(enabled_flags, g:prospector_flag_doc_warnings)
+  Assert !has_key(disabled_flags, g:prospector_flag_doc_warnings)
+  Assert (g:ale_python_prospector_options =~#
+        \ g:prospector_flag_doc_warnings)
+
+Execute (toggle linter 'bandit' on):
+  ProspectorToggleBandit
+  let disabled_flags = saloon#prospector#GetDisabledFlags()
+  let enabled_flags = saloon#prospector#GetEnabledFlags()
+
+Then (linter 'bandit' was toggled on):
+  Assert has_key(enabled_flags, g:prospector_flag_doc_warnings)
+  Assert !has_key(disabled_flags, g:prospector_flag_doc_warnings)
+  Assert (g:ale_python_prospector_options =~#
+        \ g:prospector_flag_doc_warnings)
+
+*    ProspectorToggleDodgy :call saloon#prospector#ToggleToolDodgy()
+*    ProspectorToggleFrosted :call saloon#prospector#ToggleToolFrosted()
+*    ProspectorToggleMccabe :call saloon#prospector#ToggleToolMccabe()
+*    ProspectorToggleMyPy :call saloon#prospector#ToggleToolMyPy()
+*    ProspectorTogglePep257 :call saloon#prospector#ToggleToolPep257()
+*    ProspectorTogglePep8 :call saloon#prospector#ToggleToolPep8()
+*    ProspectorToggleProfileValidator :call saloon#prospector#ToggleToolProfileValidator()
+*    ProspectorTogglePyflakes :call saloon#prospector#ToggleToolPyflakes()
+*    ProspectorTogglePylint :call saloon#prospector#ToggleToolPylint()
+*    ProspectorTogglePyroma :call saloon#prospector#ToggleToolPyroma()
+*    ProspectorToggleVulture :call saloon#prospector#ToggleToolVulture()

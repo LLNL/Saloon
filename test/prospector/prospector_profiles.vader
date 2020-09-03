@@ -1,0 +1,30 @@
+Before (enable Prospector):
+  SaloonEnableProspector
+
+Execute (increase strictness):
+* Set Prospector's strictness to most lenient profile
+  let levels = saloon#prospector#GetStrictnessLevels()
+  let g:prospector_option_value_strictness = levels[0]
+* Incrementally increase strictness profile
+  for new_level in levels[:-2]
+    AssertEqual new_level, g:prospector_option_value_strictness
+    ProspectorMoreStrict
+    AssertNotEqual new_level, g:prospector_option_value_strictness
+  endfor
+
+Then (Prospector strictness profile at max):
+  AssertEqual levels[-1], g:prospector_option_value_strictness
+
+Execute (decrease strictness):
+* Set Prospector's strictness to most strict profile
+  let levels = saloon#prospector#GetStrictnessLevels()
+  let g:prospector_option_value_strictness = levels[-1]
+* Incrementally decrease strictness profile
+  for new_level in reverse(levels[1:])
+    AssertEqual new_level, g:prospector_option_value_strictness
+    ProspectorLessStrict
+    AssertNotEqual new_level, g:prospector_option_value_strictness
+  endfor
+
+Then (Prospector strictness profile at min):
+  AssertEqual levels[0], g:prospector_option_value_strictness

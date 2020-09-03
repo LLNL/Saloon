@@ -93,7 +93,7 @@ function! s:UI.render()
     let text = "\" ======================\n\n"
     let text .= "Prospector settings:\n"
 
-    let l:levels = saloon#prospector#getStrictnessLevels()
+    let l:levels = saloon#prospector#GetStrictnessLevels()
     let text = l:indent_title .. "Strictness Level:\n"
     let text .= l:indent_item .. string(range(len(l:levels) + 1)) .. "\n"
 
@@ -114,7 +114,7 @@ function! s:UI.render()
     endif
 
     let text .= l:indent_title .. "Linters:\n"
-    for tool in saloon#prospector#getToolsAvailable()
+    for tool in saloon#prospector#GetToolsAvailable()
         if index(g:prospector_option_value_tool, tool) < 0
             let l:is_enabled = "(off)"
         else
@@ -125,14 +125,11 @@ function! s:UI.render()
     endfor
 
     let text .= "\n" .. l:indent_title .. "Flags:\n"
-    for flag in sort(saloon#prospector#getFlagNames())
-        if g:prospector_flags[flag]()
-            let l:is_enabled = "(on) "
-        else
-            let l:is_enabled = "(off)"
-        endif
+    let l:flags = saloon#prospector#GetFlags()
+    for flag in sort(keys(l:flags))
+        let l:is_enabled = l:flags[flag] ? "(on) " : "(off)"
         let text .= l:indent_item .. l:is_enabled .. " "
-        let text .= toupper(flag[2]) .. flag[3:] .. "\n"
+        let text .= toupper(flag[0]) .. flag[1:] .. "\n"
     endfor
     silent! put =text
 

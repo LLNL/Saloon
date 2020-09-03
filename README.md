@@ -28,10 +28,6 @@ The original developer of Saloon is:
 
   * David Bloss (bloss1@llnl.gov)
 
-Contributors include:
-
-  * Sean Thalken (thalken1@llnl.gov)
-
 ## License
 
 Saloon is release under the BSD 3-Clause License, (BSD-3-Clause or https://opensource.org/licenses/BSD-3-Clause).

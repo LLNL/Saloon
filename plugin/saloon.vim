@@ -15,12 +15,31 @@ nnoremap <silent> <Plug>(saloon_close) :SaloonClose<Return>
 nnoremap <silent> <Plug>(saloon_toggle) :SaloonToggle<Return>
 
 " Prospector mappings
-nnoremap <silent> <Plug>(saloon_prospector_only) :ProspectorOnly<Return>
+nnoremap <silent> <Plug>(saloon_enable_prospector) :SaloonEnableProspector<Return>
+
 " Prospector strictness profile mappings
 nnoremap <silent> <Plug>(saloon_prospector_less_strict) :ProspectorLessStrict<Return>
 nnoremap <silent> <Plug>(saloon_prospector_more_strict) :ProspectorMoreStrict<Return>
 " Flag mappings
+" Enable Flag mappings
+nnoremap <silent> <Plug>(saloon_prospector_enable_all_flags) :ProspectorEnableAllFlags<Return>
+nnoremap <silent> <Plug>(saloon_prospector_enable_doc_warnings) :ProspectorEnableDocWarnings<Return>
+nnoremap <silent> <Plug>(saloon_prospector_enable_full_pep8) :ProspectorEnableFullPep8<Return>
+nnoremap <silent> <Plug>(saloon_prospector_enable_no_autodetect) :ProspectorEnableNoAutodetect<Return>
+nnoremap <silent> <Plug>(saloon_prospector_enable_no_blending) :ProspectorEnableNoBlending<Return>
+nnoremap <silent> <Plug>(saloon_prospector_enable_no_style_warnings) :ProspectorEnableNoStyleWarnings<Return>
+nnoremap <silent> <Plug>(saloon_prospector_enable_test_warnings) :ProspectorEnableTestWarnings<Return>
+" Disable Flag mappings
+nnoremap <silent> <Plug>(saloon_prospector_disable_all_flags) :ProspectorDisableAllFlags<Return>
+nnoremap <silent> <Plug>(saloon_prospector_disable_doc_warnings) :ProspectorDisableDocWarnings<Return>
+nnoremap <silent> <Plug>(saloon_prospector_disable_full_pep8) :ProspectorsDisableFullPep8<Return>
+nnoremap <silent> <Plug>(saloon_prospector_disable_no_autodetect) :ProspectorDisableNoAutodetect<Return>
+nnoremap <silent> <Plug>(saloon_prospector_disable_no_blending) :ProspectorDisableNoBlending<Return>
+nnoremap <silent> <Plug>(saloon_prospector_disable_no_style_warnings) :ProspectorDisableNoStyleWarnings<Return>
+nnoremap <silent> <Plug>(saloon_prospector_disable_test_warnings) :ProspectorDisableTestWarnings<Return>
+" Toggle Flag mappings
 nnoremap <silent> <Plug>(saloon_prospector_toggle_doc_warnings) :ProspectorToggleDocWarnings<Return>
+nnoremap <silent> <Plug>(saloon_prospector_toggle_full_pep8) :ProspectorsToggleFullPep8<Return>
 nnoremap <silent> <Plug>(saloon_prospector_toggle_no_autodetect) :ProspectorToggleNoAutodetect<Return>
 nnoremap <silent> <Plug>(saloon_prospector_toggle_no_blending) :ProspectorToggleNoBlending<Return>
 nnoremap <silent> <Plug>(saloon_prospector_toggle_no_style_warnings) :ProspectorToggleNoStyleWarnings<Return>
@@ -50,12 +69,7 @@ let g:SaloonEventQuit = 'q'
 let g:SaloonWinPos = 'right'
 let g:SaloonWinWidth = 31
 
-
-" TODO: better way to start with prospector enabled
-let g:SaloonEnableProspector = 1
-if g:SaloonEnableProspector
-    call saloon#ProspectorOnly()
-endif
+call saloon#EnableProspector()
 
 " SECTION: Auto commands {{{1
 "============================================================

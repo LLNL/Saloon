@@ -1,0 +1,53 @@
+Execute (read buffer list into unnamed register):
+* buffers! includes hidden and unlisted buffers
+  redir @"
+  silent! buffers!
+  redir END
+
+Then (Saloon buffer does not exist):
+  Assert (@" !~? g:SaloonCreator.BufNamePrefix() .. "[0-9]")
+
+Execute (open then close Saloon window):
+  Saloon
+  let saloon_buffer = bufname()
+  SaloonClose
+* Examine unlisted, hidden, non-modifiable buffers.
+* This is the expected state of a closed Saloon window.
+  redir @"
+  silent! buffers! uh-
+  redir END
+
+Then (hidden Saloon buffer exists):
+  AssertEqual get(t:, 'SaloonBufName'), saloon_buffer
+  Assert (@" =~? saloon_buffer)
+
+After (wipeout Saloon buffer):
+* NOTE: assumes only one Saloon window buffer exists at a time.
+* Read ":help bwipeout" before modifying this!
+  bwipeout Saloon_[0-9]
+
+Execute (toggle Saloon window open):
+  SaloonToggle
+
+Then (current buffer is Saloon window):
+  AssertEqual get(t:, 'SaloonBufName'), bufname()
+
+Execute (toggle Saloon window close):
+  Saloon
+  let saloon_buffer = bufname()
+  SaloonToggle
+* Examine unlisted, hidden, non-modifiable buffers.
+* This is the expected state of a closed Saloon window.
+  redir @"
+  silent! buffers! uh-
+  redir END
+
+Then (Saloon window exists and is hidden):
+  AssertEqual get(t:, 'SaloonBufName'), saloon_buffer
+  Assert (@" =~? saloon_buffer)
+
+Execute (open Saloon window):
+  Saloon
+
+Then (Saloon window has filetype saloon):
+  AssertEqual 'saloon', &filetype

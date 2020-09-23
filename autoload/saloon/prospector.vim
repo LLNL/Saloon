@@ -36,6 +36,12 @@ endfunction
 function! s:toggleFlag(flag) dict
     if get(self, a:flag, v:none)->type() == v:t_number
         let self[a:flag] = (self[a:flag] + 1) % 2
+    elseif a:flag ==? g:ui_header_flag
+        if empty(self.get_disabled_flags())
+            call self.disable_all()
+        else
+            call self.enable_all()
+        endif
     endif
 endfunction
 "Function! s:getName(flag)

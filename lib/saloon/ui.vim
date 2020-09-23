@@ -7,6 +7,7 @@
 
 let s:UI = {}
 let g:SaloonUI = s:UI
+let g:ui_header_flag = "Flags:"
 
 " FUNCTION: s:UI.new(saloon) {{{1
 function! s:UI.New(saloon)
@@ -54,13 +55,13 @@ endfunction
 function! s:UI.updateStrictnessSynHl(index)
     if a:index < 0
         syn match ProspectorStrictnessRange "\[[,0-9 ]\+\]"ms=s+1,me=e-1,hs=s+1,he=s+2
-    elseif a:index == 0
+    elseif a:index ==# 0
         syn match ProspectorStrictnessRange "\[[,0-9 ]\+\]"ms=s+1,me=e-1,hs=s+4,he=s+5
-    elseif a:index == 1
+    elseif a:index ==# 1
         syn match ProspectorStrictnessRange "\[[,0-9 ]\+\]"ms=s+1,me=e-1,hs=s+7,he=s+8
-    elseif a:index == 2
+    elseif a:index ==# 2
         syn match ProspectorStrictnessRange "\[[,0-9 ]\+\]"ms=s+1,me=e-1,hs=s+10,he=s+11
-    elseif a:index == 3
+    elseif a:index ==# 3
         syn match ProspectorStrictnessRange "\[[,0-9 ]\+\]"ms=s+1,me=e-1,hs=s+13,he=s+14
     else
         syn match ProspectorStrictnessRange "\[[,0-9 ]\+\]"ms=s+1,me=e-1,hs=e-2,he=e-1
@@ -124,7 +125,7 @@ function! s:UI.render()
         let text .= toupper(tool[0]) .. tool[1:] .. "\n"
     endfor
 
-    let text .= "\n" .. l:indent_title .. "Flags:\n"
+    let text .= "\n" .. l:indent_title .. g:ui_header_flag .. "\n"
     let l:flags = saloon#prospector#GetFlags()
     for flag in sort(keys(l:flags))
         let l:is_enabled = l:flags[flag] ? "(on) " : "(off)"

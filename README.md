@@ -12,9 +12,14 @@ Not final, automated setup being developed...
 - NOTE: Substitute **<PLACE_HOLDER>** with your directory name
 
 #### Dependencies
-- [Vim 8](https://lc.llnl.gov/gitlab/python-vim/vim-8) compiled with **Python 3** support
+- Vim 8 compiled with **Python 3** support
 - [ALE](https://github.com/dense-analysis/ale)
 - [Prospector](http://prospector.landscape.io/en/master/)
+
+**Recommended way to resolve python dependencies resolution for python :**
+
+    pipenv install prospector[with_everything]
+    pipenv install prospector\[with_everything\]  # for zsh users
 
 ## Getting Involved
 TBD

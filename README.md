@@ -5,14 +5,14 @@ Saloon is a Vim plugin that simplifies Python code linter / fixer configuration 
 Saloon's menu lets developers toggle which static analysis tools to use and delegates those changes to [ALE's](https://github.com/dense-analysis/ale) API.
 Since [prospector](http://prospector.landscape.io/en/master/) already handles multiple tools, and is integrated with ALE, most of the actual linting will initially be handled via prospector calls.
 
-## Getting Started
+# Getting Started
 Assuming this is run on *nix / macOS, create the path to install your plugins. Skip if already done.
 1. `mkdir -p ~/.vim/pack/git_plugins/start/` Vim 8 packages live here. NOTE: **git_plugins** is an example and can be any arbitrary name.
 2. Clone this repo into ~/.vim/pack/git_plugins/start/
 3. In Vim run: `:helptags ~/.vim/pack/git_plugins/start/saloon/doc/` to make `:help saloon` work
 4. Install Dependencies below.
 
-#### Dependencies
+### Dependencies
 Vim 8 compiled with **Python 3** support
 - Make sure you have Vim 8 compiled with Python 3 support. `vim --version | grep python3` then look for `+python3` or `+python3/dyn`.
 
@@ -24,11 +24,20 @@ Vim 8 compiled with **Python 3** support
 - `pipenv install prospector[with_everything]`
 - `pipenv install prospector\[with_everything\]  # for zsh users`
 
-## Getting Involved
-TBD
+# Getting Involved
+
+Saloon is an open-source project, and we welcome contributions from the
+community.
 
 ## Contributing
-TBD
+
+We welcome all kinds of contributions: new features, bug fixes, documentation
+edits; it's all great!
+
+To contribute, make a pull request, with `develop` as the destination branch.
+being merged.
+
+For more information, see the contributing guide.
 
 ## Authors
 
@@ -48,7 +57,7 @@ See [LICENSE](./LICENSE) for details.
 
 SPDX-License-Identifier: BSD-3-Clause
 
-LLNL-CODE-XXXXXX
+LLNL-CODE-819507
 
 ## SPDX usage
 
